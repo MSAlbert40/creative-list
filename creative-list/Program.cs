@@ -17,7 +17,18 @@ namespace creative_list
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            MainForm main = new MainForm();
+            main.FormClosed += Form_Closed;
+            main.Show();
+            Application.Run();
+        }
+
+        private static void Form_Closed(Object sender, FormClosedEventArgs e)
+        {
+            ((Form)sender).FormClosed -= Form_Closed;
+            if (Application.OpenForms.Count == 0) Application.ExitThread();
+            else Application.OpenForms[0].FormClosed += Form_Closed;
         }
     }
 }
