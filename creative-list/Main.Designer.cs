@@ -29,12 +29,35 @@ namespace creative_list
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.BMenu = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // BMenu
+            // 
+            this.BMenu.AccessibleRole = System.Windows.Forms.AccessibleRole.ScrollBar;
+            this.BMenu.Location = new System.Drawing.Point(593, 422);
+            this.BMenu.Name = "BMenu";
+            this.BMenu.Size = new System.Drawing.Size(121, 28);
+            this.BMenu.TabIndex = 0;
+            this.BMenu.Text = "Start";
+            this.BMenu.UseVisualStyleBackColor = true;
+            this.BMenu.Click += new System.EventHandler(this.Menu_Click);
+            // 
+            // MainForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1300, 540);
+            this.Controls.Add(this.BMenu);
+            this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button BMenu;
     }
 }

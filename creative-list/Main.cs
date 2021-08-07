@@ -16,5 +16,10 @@ namespace creative_list
         {
             InitializeComponent();
         }
+
+        private void Menu_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
