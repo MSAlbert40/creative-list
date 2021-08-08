@@ -12,6 +12,8 @@ namespace creative_list
         public int yGraph { set; get; }
         public int dGraph { set; get; }
         private int rGraph { set; get; }
+        private int vGraph { set; get; }
+        private LinkedList<int>[] eGraph;
         private List<GraphColor> cGraph;
         private Random rd = new Random();
         private int rgb { set; get; }
@@ -26,6 +28,12 @@ namespace creative_list
             this.newColors();
             this.rgb = rd.Next(0, cGraph.Count);
             this.pen = new Pen(Color.FromArgb(cGraph[rgb].rColor, cGraph[rgb].gColor, cGraph[rgb].bColor), 4);
+        }
+        public Graph(int vGraph)
+        {
+            this.vGraph = vGraph;
+            this.eGraph = new LinkedList<int>[vGraph];
+            for (int i = 0; i < vGraph; i++) eGraph[i] = new LinkedList<int>();
         }
         public Graph(String tGraph, int xGraph, int yGraph, int dGraph)
         {
@@ -52,6 +60,30 @@ namespace creative_list
             int dr = secondGraph.rGraph + firstGraph.rGraph + 30;
             if ((Math.Pow(dx, 2)) + (Math.Pow(dy, 2)) <= Math.Pow(dr, 2)) return true;
             else return false;
+        }
+        public void AddEdge(int vertex, int edge)
+        {
+            this.eGraph[vertex].AddFirst(edge);
+        }
+        public void TopologicalSort(List<int> graph)
+        {
+            Stack<int> stack = new Stack<int>();
+            Boolean[] visited = new Boolean[vGraph];
+            //for (int i = 0; i < vGraph; i++) visited[i] = false;
+            for (int l = 0; l < vGraph; l++)
+            {
+                if (visited[l] == false) TopologicalSortUtil(l, visited, stack);
+            }
+            foreach (int vertex in stack) graph.Add(vertex);
+        }
+        private void TopologicalSortUtil(int vertex, Boolean[] visited, Stack<int> stack)
+        {
+            visited[vertex] = true;
+            foreach (int v in eGraph[vertex])
+            {
+                if (!visited[v]) TopologicalSortUtil(v, visited, stack);
+            }
+            stack.Push(vertex);
         }
         public void Drawing(Graphics paper)
         {
@@ -89,13 +121,15 @@ namespace creative_list
         private int diameter;
         private Boolean overhead;
         private Graphics paper;
+        private Graph sort;
         private Random rd = new Random();
         private PictureBox pGraph;
         private ListBox lGraph, lVertex, lEdge;
         private Graph relations = new Graph();
+        private List<int> vsort = new List<int>();
         private List<Graph> graphs = new List<Graph>();
         // private String[] list = new string[12];
-        private String[] Elist = { "glasses", "socks", "shirt", "underpants", "watch", "pants", "waistcoat", "shoes", "belt", "coat", "tie", "briefcase" };
+        private String[] Elist = { "gafas", "calcetines", "camisa", "calzoncillos", "reloj", "pantalones", "chaleco", "zapatos", "cinturón", "saco", "corbata", "maletín" };
         private int[] vertex = { 0, 0, 1, 2, 2, 3, 5, 5, 6, 8, 9, 10 };
         private int[] edge = { 1, 3, 7, 8, 10, 5, 7, 8, 9, 9, 11, 6 };
         public GraphExecution(PictureBox pGraph, ListBox lGraph, ListBox lVertex, ListBox lEdge)
@@ -114,6 +148,8 @@ namespace creative_list
             {
                 lVertex.Items.Clear();
                 lEdge.Items.Clear();
+                lGraph.Items.Clear();
+                vsort.Clear();
                 graphs.Clear();
                 pGraph.Refresh();
             }
@@ -144,7 +180,19 @@ namespace creative_list
                 }
             }
 
+            for (int t = 0; t < 12; t++)
+            {
+                this.TSort();
+                if (vsort[t] < value) lGraph.Items.Add(Elist[vsort[t]]);
+            }
+
             foreach (Graph view in graphs) view.Drawing(paper);
+        }
+        public void TSort()
+        {
+            sort = new Graph(12);
+            for (int z = 0; z < 12; z++) sort.AddEdge(vertex[z], edge[z]);
+            sort.TopologicalSort(vsort);
         }
     }
 }
