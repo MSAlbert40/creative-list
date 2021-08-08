@@ -16,3 +16,5 @@ Z:\creative-list\creative-list\obj\Debug\net5.0-windows\creative-list.dll
 Z:\creative-list\creative-list\obj\Debug\net5.0-windows\ref\creative-list.dll
 Z:\creative-list\creative-list\obj\Debug\net5.0-windows\creative-list.pdb
 Z:\creative-list\creative-list\obj\Debug\net5.0-windows\creative-list.genruntimeconfig.cache
+Z:\creative-list\creative-list\obj\Debug\net5.0-windows\creative_list.DashboardForm.resources
+Z:\creative-list\creative-list\obj\Debug\net5.0-windows\creative_list.Properties.Resources.resources
