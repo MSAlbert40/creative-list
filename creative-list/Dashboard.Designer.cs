@@ -105,7 +105,7 @@ namespace creative_list
             // 
             this.LBEdge.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(195)))), ((int)(((byte)(170)))));
             this.LBEdge.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.LBEdge.Font = new System.Drawing.Font("Economica", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.LBEdge.Font = new System.Drawing.Font("Economica", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.LBEdge.FormattingEnabled = true;
             this.LBEdge.ItemHeight = 17;
             this.LBEdge.Location = new System.Drawing.Point(162, 143);
@@ -117,7 +117,7 @@ namespace creative_list
             // 
             this.LBVertex.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(195)))), ((int)(((byte)(170)))));
             this.LBVertex.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.LBVertex.Font = new System.Drawing.Font("Economica", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.LBVertex.Font = new System.Drawing.Font("Economica", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.LBVertex.FormattingEnabled = true;
             this.LBVertex.ItemHeight = 17;
             this.LBVertex.Location = new System.Drawing.Point(42, 143);
@@ -203,6 +203,8 @@ namespace creative_list
             this.TBBelongs.Size = new System.Drawing.Size(118, 29);
             this.TBBelongs.TabIndex = 1;
             this.TBBelongs.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TBBelongs.TextChanged += new System.EventHandler(this.Belongs_Valid);
+            this.TBBelongs.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Belongs_Text);
             // 
             // BGenerate
             // 
@@ -215,6 +217,7 @@ namespace creative_list
             this.BGenerate.TabIndex = 0;
             this.BGenerate.Text = "Build";
             this.BGenerate.UseVisualStyleBackColor = true;
+            this.BGenerate.Click += new System.EventHandler(this.Generate_Click);
             // 
             // PBViewGraph
             // 
