@@ -97,6 +97,35 @@ namespace creative_list
             Point ePoint = new Point(eGraph.xGraph + eGraph.rGraph, eGraph.yGraph + eGraph.rGraph);
             paper.DrawLine(pen, vPoint, ePoint);
         }
+        public void Drawing(Graphics paper, Graph vGraph, Graph eGraph, int distance)
+        {
+            Point vPoint = new Point(vGraph.xGraph + vGraph.rGraph, vGraph.yGraph + vGraph.rGraph);
+            Point ePoint = new Point(eGraph.xGraph + eGraph.rGraph, eGraph.yGraph + eGraph.rGraph);
+
+            if ((rd.Next(0, 2) > 0)) dGraph = -35;
+            else dGraph = 195;
+            Point cPoint = new Point(((ePoint.X - vPoint.X) / 2) + vPoint.X, dGraph);
+
+            if ((ePoint.X - vPoint.X) < distance) paper.DrawLine(pen, vPoint, ePoint);
+            else ZBezier(paper, pen, vPoint, cPoint, ePoint, 4);
+        }
+        private void ZBezier(Graphics paper, Pen pen, Point vPoint, Point cPoint, Point ePoint, int count)
+        {
+            if (count > 0)
+            {
+                Point pOne = new Point((vPoint.X + cPoint.X) / 2, (vPoint.Y + cPoint.Y) / 2);
+                Point pTwo = new Point((cPoint.X + ePoint.X) / 2, (cPoint.Y + ePoint.Y) / 2);
+                Point pMain = new Point((pOne.X + pTwo.X) / 2, (pOne.Y + pTwo.Y) / 2);
+
+                ZBezier(paper, pen, vPoint, pOne, pMain, count - 1);
+                ZBezier(paper, pen, pMain, pTwo, ePoint, count - 1);
+            }
+            else
+            {
+                paper.DrawLine(pen, vPoint, cPoint);
+                paper.DrawLine(pen, cPoint, ePoint);
+            }
+        }
         private void newColors()
         {
             cGraph.Add(new GraphColor(250, 148, 15));
@@ -129,9 +158,16 @@ namespace creative_list
         private List<int> vsort = new List<int>();
         private List<Graph> graphs = new List<Graph>();
         // private String[] list = new string[12];
-        private String[] Elist = { "gafas", "calcetines", "camisa", "calzoncillos", "reloj", "pantalones", "chaleco", "zapatos", "cinturón", "saco", "corbata", "maletín" };
+        private String[] Elist = { "glasses", "socks", "shirt", "underpants", "watch", "pants", "waistcoat", "shoes", "belt", "coat", "tie", "briefcase" };
+        private String[] Slist = { "gafas", "calcetines", "camisa", "calzoncillos", "reloj", "pantalones", "chaleco", "zapatos", "cinturón", "saco", "corbata", "maletín" };
         private int[] vertex = { 0, 0, 1, 2, 2, 3, 5, 5, 6, 8, 9, 10 };
         private int[] edge = { 1, 3, 7, 8, 10, 5, 7, 8, 9, 9, 11, 6 };
+        public GraphExecution(PictureBox pGraph)
+        {
+            this.pGraph = pGraph;
+            this.diameter = 70;
+            this.paper = pGraph.CreateGraphics();
+        }
         public GraphExecution(PictureBox pGraph, ListBox lGraph, ListBox lVertex, ListBox lEdge)
         {
             this.pGraph = pGraph;
@@ -141,7 +177,7 @@ namespace creative_list
             this.diameter = 70;
             this.paper = pGraph.CreateGraphics();
         }
-        public void viewGraph(int value)
+        public void viewGraph(int value, List<String> topological)
         {
             // Clean All Form
             if (graphs.Count > 0)
@@ -152,6 +188,7 @@ namespace creative_list
                 vsort.Clear();
                 graphs.Clear();
                 pGraph.Refresh();
+                topological.Clear();
             }
 
             while (graphs.Count < value)
@@ -183,7 +220,11 @@ namespace creative_list
             for (int t = 0; t < 12; t++)
             {
                 this.TSort();
-                if (vsort[t] < value) lGraph.Items.Add(Elist[vsort[t]]);
+                if (vsort[t] < value)
+                {
+                    lGraph.Items.Add(Elist[vsort[t]]);
+                    topological.Add(Elist[vsort[t]]);
+                }
             }
 
             foreach (Graph view in graphs) view.Drawing(paper);
@@ -193,6 +234,36 @@ namespace creative_list
             sort = new Graph(12);
             for (int z = 0; z < 12; z++) sort.AddEdge(vertex[z], edge[z]);
             sort.TopologicalSort(vsort);
+        }
+        public void viewTopological(int value, List<String> topological)
+        {
+            while (vsort.Count < value)
+            {
+                if (vsort.Count == 0) vsort.Add(24);
+                else if (vsort.Count > 0) vsort.Add(vsort[vsort.Count - 1] + diameter + 30);
+            }
+            
+            while (graphs.Count < value)
+            {
+                int ypos = (pGraph.Height / 2) - (diameter / 2);
+                for (int z = 0; z < topological.Count; z++)
+                {
+                    if (graphs.Count == Array.IndexOf(Elist, topological[z]))
+                    {
+                        int search = topological.IndexOf(topological[z]);
+                        graphs.Add(new Graph(topological[search], vsort[search], ypos, diameter));
+                        break;
+                    }
+                }
+            }
+
+            // Add Relation in ListBox
+            for (int l = 0; l < Elist.Length; l++)
+            {
+                if (vertex[l] < value && edge[l] < value) relations.Drawing(paper, graphs[vertex[l]], graphs[edge[l]], (diameter + 54));
+            }
+
+            foreach (Graph view in graphs) view.Drawing(paper);
         }
     }
 }

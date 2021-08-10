@@ -19,17 +19,23 @@ namespace creative_list
             int nWidthEllipse, int nHeightEllipse // dimension of ellipse
         );
 
-        GraphExecution graph;
-
         int value;
 
-        Boolean active;
+        List<String> tSort;
+
+        Boolean active, view;
+
+        GraphExecution graph;
+
+        TopologicalSortForm topologicalSort;
 
         public DashboardForm()
         {
             InitializeComponent();
             graph = new GraphExecution(PBViewGraph, LBTopologicalSorting, LBVertex, LBEdge);
+            tSort = new List<String>();
             active = true;
+            view = false;
         }
 
         private void Dashboard_Load(object sender, EventArgs e)
@@ -61,9 +67,10 @@ namespace creative_list
         private void Generate_Click(object sender, EventArgs e)
         {
             value = Convert.ToInt32(TBBelongs.Text);
-            if (value >= Convert.ToInt32(TBMinimum.Text) && value <= Convert.ToInt32(TBMaximum.Text)) graph.viewGraph(value);
+            if (value >= Convert.ToInt32(TBMinimum.Text) && value <= Convert.ToInt32(TBMaximum.Text)) graph.viewGraph(value, tSort);
             else if (value < Convert.ToInt32(TBMinimum.Text)) MessageBox.Show("Sorry, but the entered value is less than the Minimum", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             else if (value > Convert.ToInt32(TBMaximum.Text)) MessageBox.Show("Sorry, but the value entered is greater than the Maximum", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (view) this.topologicalSort.Close();
             BView.Visible = true;
         }
 
@@ -79,11 +86,22 @@ namespace creative_list
             else e.Handled = true;
         }
 
+        private void TopologicalSort_Click(object sender, EventArgs e)
+        {
+            topologicalSort = new TopologicalSortForm();
+            topologicalSort.value = Convert.ToInt32(TBBelongs.Text);
+            for (int t = 0; t < Convert.ToInt32(TBBelongs.Text); t++) topologicalSort.tSort.Add(tSort[t]);
+            topologicalSort.Show();
+            view = true;
+        }
+
         private void Back_Click(object sender, EventArgs e)
         {
             MainForm main = new MainForm();
             main.Show();
+
             this.Close();
+            if (view) this.topologicalSort.Close();
         }
 
         private void Minimize_Click(object sender, EventArgs e)
@@ -94,6 +112,7 @@ namespace creative_list
         private void Close_Click(object sender, EventArgs e)
         {
             this.Close();
+            if (view) this.topologicalSort.Close();
         }
     }
 }

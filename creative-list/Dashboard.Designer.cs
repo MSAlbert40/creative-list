@@ -288,6 +288,7 @@ namespace creative_list
             this.BView.TabIndex = 6;
             this.BView.Text = "View";
             this.BView.UseVisualStyleBackColor = false;
+            this.BView.Click += new System.EventHandler(this.TopologicalSort_Click);
             // 
             // DashboardForm
             // 
