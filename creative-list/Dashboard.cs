@@ -97,10 +97,10 @@ namespace creative_list
 
         private void Back_Click(object sender, EventArgs e)
         {
-            MainForm main = new MainForm();
-            main.Show();
-
+            MenuForm menu = new MenuForm();
+            menu.Show();
             this.Close();
+
             if (view) this.topologicalSort.Close();
         }
 

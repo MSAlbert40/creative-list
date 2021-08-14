@@ -7,6 +7,9 @@
     <Compile Update="Main.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="TopologicalSort.cs">
       <SubType>Form</SubType>
     </Compile>

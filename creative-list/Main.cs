@@ -19,8 +19,8 @@ namespace creative_list
 
         private void Menu_Click(object sender, EventArgs e)
         {
-            DashboardForm dashboard = new DashboardForm();
-            dashboard.Show();
+            MenuForm menu = new MenuForm();
+            menu.Show();
             this.Close();
         }
     }

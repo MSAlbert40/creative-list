@@ -19,3 +19,4 @@ Z:\creative-list\creative-list\obj\Debug\net5.0-windows\creative-list.genruntime
 Z:\creative-list\creative-list\obj\Debug\net5.0-windows\creative_list.DashboardForm.resources
 Z:\creative-list\creative-list\obj\Debug\net5.0-windows\creative_list.Properties.Resources.resources
 Z:\creative-list\creative-list\obj\Debug\net5.0-windows\creative_list.TopologicalSortForm.resources
+Z:\creative-list\creative-list\obj\Debug\net5.0-windows\creative_list.MenuForm.resources
