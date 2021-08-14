@@ -25,13 +25,23 @@ namespace creative_list
 
         GraphExecution graph;
 
+        public String[] list;
+
+        public int[] vertex, edge;
+
         public List<String> tSort;
+
+        List<GraphRelation> rGraphs;
 
         public TopologicalSortForm()
         {
             InitializeComponent();
             graph = new GraphExecution(PBViewGraph);
+            rGraphs = new List<GraphRelation>();
             tSort = new List<String>();
+            list = new String[12];
+            vertex = new int[12];
+            edge = new int[12];
             active = true;
         }
 
@@ -46,6 +56,9 @@ namespace creative_list
 
         private void TopologicalSort_Time(object sender, EventArgs e)
         {
+            for (int z = 0; z < 12; z++) rGraphs.Add(new GraphRelation(vertex[z], edge[z]));
+            graph.exportResources(list, rGraphs);
+
             graph.viewTopological(value, tSort);
             TDraw.Enabled = false;
         }

@@ -145,6 +145,17 @@ namespace creative_list
             this.bColor = bColor;
         }
     }
+    class GraphRelation
+    {
+        public int vertex { set; get; }
+        public int edge { set; get; }
+        public GraphRelation() { }
+        public GraphRelation(int vertex, int edge)
+        {
+            this.vertex = vertex;
+            this.edge = edge;
+        }
+    }
     class GraphExecution
     {
         private int diameter;
@@ -155,18 +166,15 @@ namespace creative_list
         private PictureBox pGraph;
         private ListBox lGraph, lVertex, lEdge;
         private Graph relations = new Graph();
+        private String[] list = new string[12];
         private List<int> vsort = new List<int>();
         private List<Graph> graphs = new List<Graph>();
-        // private String[] list = new string[12];
-        private String[] Elist = { "glasses", "socks", "shirt", "underpants", "watch", "pants", "waistcoat", "shoes", "belt", "coat", "tie", "briefcase" };
-        private String[] Slist = { "gafas", "calcetines", "camisa", "calzoncillos", "reloj", "pantalones", "chaleco", "zapatos", "cinturón", "saco", "corbata", "maletín" };
-        private int[] vertex = { 0, 0, 1, 2, 2, 3, 5, 5, 6, 8, 9, 10 };
-        private int[] edge = { 1, 3, 7, 8, 10, 5, 7, 8, 9, 9, 11, 6 };
+        private List<GraphRelation> rGraphs = new List<GraphRelation>();
         public GraphExecution(PictureBox pGraph)
         {
             this.pGraph = pGraph;
-            this.diameter = 70;
-            this.paper = pGraph.CreateGraphics();
+            diameter = 70;
+            paper = pGraph.CreateGraphics();
         }
         public GraphExecution(PictureBox pGraph, ListBox lGraph, ListBox lVertex, ListBox lEdge)
         {
@@ -174,8 +182,16 @@ namespace creative_list
             this.lGraph = lGraph;
             this.lVertex = lVertex;
             this.lEdge = lEdge;
-            this.diameter = 70;
-            this.paper = pGraph.CreateGraphics();
+            diameter = 70;
+            paper = pGraph.CreateGraphics();
+        }
+        public void exportResources(String[] list, List<GraphRelation> rGraphs)
+        {
+            for (int x = 0; x < 12; x++)
+            {
+                this.list[x] = list[x];
+                this.rGraphs.Add(new GraphRelation(rGraphs[x].vertex, rGraphs[x].edge));
+            }
         }
         public void viewGraph(int value, List<String> topological)
         {
@@ -193,7 +209,7 @@ namespace creative_list
 
             while (graphs.Count < value)
             {
-                Graph newGraph = new Graph(Elist[graphs.Count], rd.Next(1, pGraph.Width - diameter - 5), rd.Next(1, pGraph.Height - diameter - 5), diameter);
+                Graph newGraph = new Graph(list[graphs.Count], rd.Next(1, pGraph.Width - diameter - 5), rd.Next(1, pGraph.Height - diameter - 5), diameter);
                 if (graphs.Count == 0) graphs.Add(newGraph);
                 else if (graphs.Count > 0)
                 {
@@ -207,13 +223,13 @@ namespace creative_list
             }
 
             // Add Relation in ListBox
-            for (int l = 0; l < Elist.Length; l++)
+            for (int l = 0; l < list.Length; l++)
             {
-                if (vertex[l] < value && edge[l] < value)
+                if (rGraphs[l].vertex < value && rGraphs[l].edge < value)
                 {
-                    lVertex.Items.Add(Elist[vertex[l]]);
-                    lEdge.Items.Add(Elist[edge[l]]);
-                    relations.Drawing(paper, graphs[vertex[l]], graphs[edge[l]]);
+                    lVertex.Items.Add(list[rGraphs[l].vertex]);
+                    lEdge.Items.Add(list[rGraphs[l].edge]);
+                    relations.Drawing(paper, graphs[rGraphs[l].vertex], graphs[rGraphs[l].edge]);
                 }
             }
 
@@ -222,8 +238,8 @@ namespace creative_list
                 this.TSort();
                 if (vsort[t] < value)
                 {
-                    lGraph.Items.Add(Elist[vsort[t]]);
-                    topological.Add(Elist[vsort[t]]);
+                    lGraph.Items.Add(list[vsort[t]]);
+                    topological.Add(list[vsort[t]]);
                 }
             }
 
@@ -232,7 +248,7 @@ namespace creative_list
         public void TSort()
         {
             sort = new Graph(12);
-            for (int z = 0; z < 12; z++) sort.AddEdge(vertex[z], edge[z]);
+            for (int z = 0; z < 12; z++) sort.AddEdge(rGraphs[z].vertex, rGraphs[z].edge);
             sort.TopologicalSort(vsort);
         }
         public void viewTopological(int value, List<String> topological)
@@ -248,7 +264,7 @@ namespace creative_list
                 int ypos = (pGraph.Height / 2) - (diameter / 2);
                 for (int z = 0; z < topological.Count; z++)
                 {
-                    if (graphs.Count == Array.IndexOf(Elist, topological[z]))
+                    if (graphs.Count == Array.IndexOf(list, topological[z]))
                     {
                         int search = topological.IndexOf(topological[z]);
                         graphs.Add(new Graph(topological[search], vsort[search], ypos, diameter));
@@ -258,9 +274,9 @@ namespace creative_list
             }
 
             // Add Relation in ListBox
-            for (int l = 0; l < Elist.Length; l++)
+            for (int l = 0; l < list.Length; l++)
             {
-                if (vertex[l] < value && edge[l] < value) relations.Drawing(paper, graphs[vertex[l]], graphs[edge[l]], (diameter + 54));
+                if (rGraphs[l].vertex < value && rGraphs[l].edge < value) relations.Drawing(paper, graphs[rGraphs[l].vertex], graphs[rGraphs[l].edge], (diameter + 54));
             }
 
             foreach (Graph view in graphs) view.Drawing(paper);
