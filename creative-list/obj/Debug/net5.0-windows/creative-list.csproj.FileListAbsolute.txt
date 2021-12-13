@@ -20,3 +20,24 @@ Z:\creative-list\creative-list\obj\Debug\net5.0-windows\creative_list.DashboardF
 Z:\creative-list\creative-list\obj\Debug\net5.0-windows\creative_list.Properties.Resources.resources
 Z:\creative-list\creative-list\obj\Debug\net5.0-windows\creative_list.TopologicalSortForm.resources
 Z:\creative-list\creative-list\obj\Debug\net5.0-windows\creative_list.MenuForm.resources
+Z:\M - Projects\creative-list\creative-list\bin\Debug\net5.0-windows\creative-list.exe
+Z:\M - Projects\creative-list\creative-list\bin\Debug\net5.0-windows\creative-list.deps.json
+Z:\M - Projects\creative-list\creative-list\bin\Debug\net5.0-windows\creative-list.runtimeconfig.json
+Z:\M - Projects\creative-list\creative-list\bin\Debug\net5.0-windows\creative-list.runtimeconfig.dev.json
+Z:\M - Projects\creative-list\creative-list\bin\Debug\net5.0-windows\creative-list.dll
+Z:\M - Projects\creative-list\creative-list\bin\Debug\net5.0-windows\ref\creative-list.dll
+Z:\M - Projects\creative-list\creative-list\bin\Debug\net5.0-windows\creative-list.pdb
+Z:\M - Projects\creative-list\creative-list\obj\Debug\net5.0-windows\creative-list.csproj.AssemblyReference.cache
+Z:\M - Projects\creative-list\creative-list\obj\Debug\net5.0-windows\creative_list.DashboardForm.resources
+Z:\M - Projects\creative-list\creative-list\obj\Debug\net5.0-windows\creative_list.MainForm.resources
+Z:\M - Projects\creative-list\creative-list\obj\Debug\net5.0-windows\creative_list.MenuForm.resources
+Z:\M - Projects\creative-list\creative-list\obj\Debug\net5.0-windows\creative_list.TopologicalSortForm.resources
+Z:\M - Projects\creative-list\creative-list\obj\Debug\net5.0-windows\creative-list.csproj.GenerateResource.cache
+Z:\M - Projects\creative-list\creative-list\obj\Debug\net5.0-windows\creative-list.GeneratedMSBuildEditorConfig.editorconfig
+Z:\M - Projects\creative-list\creative-list\obj\Debug\net5.0-windows\creative-list.AssemblyInfoInputs.cache
+Z:\M - Projects\creative-list\creative-list\obj\Debug\net5.0-windows\creative-list.AssemblyInfo.cs
+Z:\M - Projects\creative-list\creative-list\obj\Debug\net5.0-windows\creative-list.csproj.CoreCompileInputs.cache
+Z:\M - Projects\creative-list\creative-list\obj\Debug\net5.0-windows\creative-list.dll
+Z:\M - Projects\creative-list\creative-list\obj\Debug\net5.0-windows\ref\creative-list.dll
+Z:\M - Projects\creative-list\creative-list\obj\Debug\net5.0-windows\creative-list.pdb
+Z:\M - Projects\creative-list\creative-list\obj\Debug\net5.0-windows\creative-list.genruntimeconfig.cache

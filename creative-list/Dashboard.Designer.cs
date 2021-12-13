@@ -105,7 +105,7 @@ namespace creative_list
             // 
             this.LBEdge.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(195)))), ((int)(((byte)(170)))));
             this.LBEdge.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.LBEdge.Font = new System.Drawing.Font("Economica", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.LBEdge.Font = new System.Drawing.Font("Economica", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.LBEdge.FormattingEnabled = true;
             this.LBEdge.ItemHeight = 17;
             this.LBEdge.Location = new System.Drawing.Point(162, 143);
@@ -117,7 +117,7 @@ namespace creative_list
             // 
             this.LBVertex.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(195)))), ((int)(((byte)(170)))));
             this.LBVertex.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.LBVertex.Font = new System.Drawing.Font("Economica", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.LBVertex.Font = new System.Drawing.Font("Economica", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.LBVertex.FormattingEnabled = true;
             this.LBVertex.ItemHeight = 17;
             this.LBVertex.Location = new System.Drawing.Point(42, 143);
@@ -174,7 +174,7 @@ namespace creative_list
             // TBMinimum
             // 
             this.TBMinimum.BackColor = System.Drawing.Color.White;
-            this.TBMinimum.Font = new System.Drawing.Font("Economica", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.TBMinimum.Font = new System.Drawing.Font("Economica", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.TBMinimum.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.TBMinimum.Location = new System.Drawing.Point(24, 414);
             this.TBMinimum.Name = "TBMinimum";
@@ -185,7 +185,7 @@ namespace creative_list
             // TBMaximum
             // 
             this.TBMaximum.BackColor = System.Drawing.Color.White;
-            this.TBMaximum.Font = new System.Drawing.Font("Economica", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.TBMaximum.Font = new System.Drawing.Font("Economica", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.TBMaximum.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.TBMaximum.Location = new System.Drawing.Point(229, 414);
             this.TBMaximum.Name = "TBMaximum";
@@ -196,7 +196,7 @@ namespace creative_list
             // TBBelongs
             // 
             this.TBBelongs.BackColor = System.Drawing.Color.White;
-            this.TBBelongs.Font = new System.Drawing.Font("Economica", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.TBBelongs.Font = new System.Drawing.Font("Economica", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.TBBelongs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.TBBelongs.Location = new System.Drawing.Point(95, 414);
             this.TBBelongs.Name = "TBBelongs";

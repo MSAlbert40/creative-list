@@ -117,7 +117,7 @@ namespace creative_list
             this.LInstruction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
             this.LInstruction.Location = new System.Drawing.Point(494, 439);
             this.LInstruction.Name = "LInstruction";
-            this.LInstruction.Size = new System.Drawing.Size(312, 25);
+            this.LInstruction.Size = new System.Drawing.Size(330, 25);
             this.LInstruction.TabIndex = 14;
             this.LInstruction.Text = "Choose an option from the center buttons";
             this.LInstruction.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
